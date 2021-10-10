@@ -1,18 +1,20 @@
-import { APIGatewayProxyEvent } from "aws-lambda";
-import { handler } from "../handler";
+import { APIGatewayProxyEvent} from "aws-lambda";
+import { payments } from "../handler";
+import mockData from "../__mocks__/response.json"
 
-describe('Unit test for app handler', function () {
-    it('verifies successful response', async () => {
+
+
+describe('Unit test for handler', function () {
+    it('for a given date should return base salary for the next 12 months', async () => {
         const event: APIGatewayProxyEvent = {
             queryStringParameters: {
-                a: "1"
+                date: "1609455600000"
             }
-        } as any
+        } as any;
 
         // @ts-ignore
-        const result = await handler(event)
+        const result = await payments(event)
 
-        expect(result.statusCode).toEqual(200);
-        expect(result.body).toEqual(JSON.stringify({ message: "Success", input: event}, null, 2));
-    });
+        expect(result.body).toEqual(JSON.stringify(mockData));
+    })
 });

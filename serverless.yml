@@ -7,8 +7,8 @@ provider:
   lambdaHashingVersion: '20201221'
 
 functions:
-  hello:
-    handler: handler.hello
+  payments:
+    handler: handler.payments
     events:
       - httpApi:
           path: /
