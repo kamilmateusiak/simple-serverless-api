@@ -15,6 +15,6 @@ describe('Unit test for handler', function () {
         // @ts-ignore
         const result = await payments(event)
 
-        expect(result.body).toEqual(JSON.stringify(mockData));
+        expect(result.body).toEqual(JSON.stringify({paymentDates: mockData}));
     })
 });
