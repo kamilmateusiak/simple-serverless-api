@@ -27,5 +27,5 @@ export function getMonthLastDateForPayment(inputDate: Date, lastDayOffset = 0) {
     const month = lastDayOfMonth.getMonth();
     const year = lastDayOfMonth.getFullYear();
 
-    return `${prefixWithZero(day)}.${prefixWithZero(month + 1)}.${year}`
+    return `${prefixWithZero(day)}/${prefixWithZero(month + 1)}/${year}`
 }

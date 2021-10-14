@@ -7,8 +7,8 @@ provider:
   lambdaHashingVersion: '20201221'
 
 functions:
-  payments:
-    handler: handler.payments
+  getPayments:
+    handler: handler.getPayments
     events:
       - httpApi:
           path: /
@@ -16,3 +16,4 @@ functions:
 
 plugins:
   - serverless-plugin-typescript
+  - serverless-offline
