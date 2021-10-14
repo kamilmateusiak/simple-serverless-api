@@ -1,3 +1,6 @@
+import { tz } from "moment-timezone";
+import { defaultTimezone } from "../constants/timezone";
+
 function prefixWithZero(input: number) {
     if (input < 10) {
         return `0${input}`
@@ -7,25 +10,18 @@ function prefixWithZero(input: number) {
 }
 
 /**
- * 
- * @param monthNumericValue The number assiociated with month, range 0-11.
- * Returns 
+ * @param year The year of the date we are checking payment for
+ * @param month The number assiociated with month, range 0-11.
+ * @returns Date of payment in the given month in format MM/DD/YYYY
  */
-export function getMonthLastDateForPayment(inputDate: Date, lastDayOffset = 0) {
-    const inputDateMonth = inputDate.getMonth();
-    const inputDateYear = inputDate.getFullYear();
-
-    const lastDayOfMonth = new Date(inputDateYear, inputDateMonth + 1, 0 - lastDayOffset)
+export function getMonthLastDateForPayment(month: number, year: number, timezone = defaultTimezone, lastDayOffset = 0): string {
+    const lastDayOfMonth = new Date(tz(new Date(year, month + 1, 0 - lastDayOffset), timezone).format());
 
     const weekday = lastDayOfMonth.getDay();
 
     if (weekday === 0 || weekday === 6) {
-        return getMonthLastDateForPayment(inputDate, lastDayOffset + 1)
+        return getMonthLastDateForPayment(month, year, timezone, lastDayOffset + 1)
     }
 
-    const day = lastDayOfMonth.getDate();
-    const month = lastDayOfMonth.getMonth();
-    const year = lastDayOfMonth.getFullYear();
-
-    return `${prefixWithZero(day)}/${prefixWithZero(month + 1)}/${year}`
+    return `${prefixWithZero(lastDayOfMonth.getMonth() + 1)}/${prefixWithZero(lastDayOfMonth.getDate())}/${lastDayOfMonth.getFullYear()}`
 }
