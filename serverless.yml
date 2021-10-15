@@ -1,4 +1,5 @@
 service: serverless-http-api-typescript
+app: recru-task
 frameworkVersion: '2'
 
 provider:

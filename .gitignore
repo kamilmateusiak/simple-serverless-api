@@ -8,3 +8,5 @@ jspm_packages
 
 # Tests
 coverage
+
+.DS_Store
