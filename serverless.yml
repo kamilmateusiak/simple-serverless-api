@@ -1,3 +1,4 @@
+org: kamilmateusiak
 service: serverless-http-api-typescript
 app: recru-task
 frameworkVersion: '2'
@@ -12,7 +13,7 @@ functions:
     handler: handler.getPayments
     events:
       - httpApi:
-          path: /
+          path: /get-payments
           method: get
 
 plugins:
