@@ -12,20 +12,23 @@ npm install
 
 ## Usage
 
-**Deploy**
-
-```
-$ serverless deploy
-```
-
 **Invoke the function locally.**
 
 ```
-serverless invoke local --function hello
+yarn dev
 ```
 
-**Invoke the function**
+**Response**
+Two parameters are accepted:
+- `date` - date string in the JavaScript default format "MM/DD/YYYY"
+- `timezone` - optional timezone, when not provided calculation will happen for UTC timezone 
 
+The function will reaturn csv file with data: `paymentDates`, `bonusPaymentDates`. In case of any error it will response with the following JSON:
 ```
-curl https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/
+{
+    statusCode: number;
+    data: {
+        errorMessage: string;
+    }
+}
 ```
